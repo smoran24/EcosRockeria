@@ -1,0 +1,81 @@
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+@font-face {
+    font-family: 'RaleWay'; /*Nombre de la fuente a usar al nombrarla*/
+    src: url("../font/Raleway-VariableFont_wght.ttf");
+}
+@font-face {
+    font-family: 'OpenSans'; /*Nombre de la fuente a usar al nombrarla*/
+    src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
+}
+
+body{
+    font-family: 'OpenSans';
+    font-weight:400;
+}
+body h2{
+    font-weight:700;
+}
+
+#cabecera{
+    margin:0em;
+    padding:2em;
+    font-family: 'RaleWay';
+    font-weight:400;
+    background-color: rgb(133, 255, 103);
+    
+}
+#cabecera li{
+    float:right; /*tuve que poner los items de la list en orden inverso para que este float los acomode bien*/
+    color:hsl(0, 0%, 27%);
+    margin: 1em;
+    padding: 0.5em;
+    list-style: none;
+}
+#cabecera div .col-sm-8{
+    text-align: center;
+    padding-right: 3em;
+}
+
+#primeraSeccion{
+    background-color: gainsboro;
+    background-repeat: no-repeat; /*evita su repetición*/
+    background-position: bottom; /*posiciona la imagen al fondo de la seccion*/
+    margin:0em;
+    padding:2em;
+}
+#primeraSeccion h2, p{
+    color:hsl(0, 0%, 27%);
+}
+
+#segundaSeccion{
+    background-color: hsl(240, 75%, 98%);
+    margin:0em;
+    padding:2em;
+}
+#segundaSeccion h2, p{
+    color:hsl(0, 0%, 27%);
+}
+#segundaSeccion a{
+    color:hsl(170, 45%, 43%)
+}
+
+#terceraSeccion{
+    background-color: hsl(0, 0%, 27%);
+    margin:0em;
+    padding:5em;
+}
+#terceraSeccion p, ul{
+    color:white;
+}
+#terceraSeccion #ul-tel{
+    list-style-image: url('../images/icon-phone.svg');
+}
+#terceraSeccion #ul-mail{
+    list-style-image: url('../images/icon-email.svg');
+}
+#terceraSeccion #logo-blanco, #icono-fb, #icono-tw, #icono-ig{ /*cambia de color a blanco las imagenes*/
+    color:white;
+    filter: brightness(0) invert(1); 
+}
