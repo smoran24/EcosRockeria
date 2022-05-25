@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link href="./css/bootstrap.min.css" rel="stylesheet"> <!-- estilos del bootstrap -->
   <link href="./css/style.css" rel="stylesheet"> <!-- mis estilos-->
@@ -13,13 +13,12 @@
 
   <div class="container-fluid" id="cabecera">
     <div class="row">
-      <div class="col-sm-4"><a href="index.html"><img src="./images/ecos-logo.png" alt="logo" width="100px" id="logo-cabecera"></a></div>
-      <div class="col-sm-8">
-        <ul>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li><a href="">Carrito</a></li>
-          <li><a href="productos.html">Productos</a></li>
-        </ul>
+      <div class="col">
+        <a href="index.html"><img src="./images/ecos-logo.png" alt="logo" width="100px" id="logo-cabecera"></a>
+      </div>
+      <div class="col" id="botones-cabecera">
+        <a class="active" href="contacto.html">Contacto</a>
+        <a href="productos.html">Productos</a>
       </div>
     </div>
   </div>
@@ -29,7 +28,7 @@
       <div class="col">
         <h2>CONTACTO</h2>
         <br>
-        <img src="./images/contacto.png" alt="contacto" width="500px">
+        <img class="img-fluid" src="./images/contacto.png" alt="contacto" width="500px">
         <br>
         <br>
         <ul id="ul-tel">
@@ -56,16 +55,16 @@
         <img src="./images/ecos-logo.png" id="logo-blanco" width="150px">
         <br>
         <br>
-        <img src="./images/facebook.svg" id="icono-fb" width="47px">
-        <img src="./images/twitter.svg" id="icono-tw" width="47px">
-        <img src="./images/instagram.svg" id="icono-ig" width="47px">
+        <a href="https://www.facebook.com/aconcaguauniversidad"><img src="./images/facebook.svg" id="icono-fb" width="47px"></a>
+        <a href="https://twitter.com/aconcagua1965"><img src="./images/twitter.svg" id="icono-tw" width="47px"></a>
+        <a href="https://www.instagram.com/universidaddelaconcagua/"><img src="./images/instagram.svg" id="icono-ig" width="47px"></a>
       </div>
-      
       <div class="col">
         <br>
         <br>
         <p id="p-newsletter">Suscribite a nuestro newsletter:</p>
-        <input type="text" placeholder="Ingrese su correo..." style="width: 300px;">
+        <input class="form-control" id="inputdefault" type="email" placeholder="Ingrese su correo...">
+        <br>
         <button class="btn btn-secondary" width="50px">Enviar</button>
       </div>
     </div>

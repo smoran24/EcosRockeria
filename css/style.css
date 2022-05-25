@@ -5,10 +5,6 @@
     font-family: 'Antonio'; /*Nombre de la fuente a usar al nombrarla*/
     src: url("../font/Antonio-VariableFont_wght.ttf");
 }
-@font-face {
-    font-family: 'OpenSans'; /*Nombre de la fuente a usar al nombrarla*/
-    src: url("../font/OpenSans-VariableFont_wdth,wght.ttf");
-}
 
 body{
     font-family: 'Antonio';
@@ -20,31 +16,44 @@ a{
 
 #cabecera{
     margin:0em;
-    padding:2em;
+    padding:1em;
+    padding-left:6em;
+    padding-right:6em;
     font-family: 'Antonio';
     font-size: large;
     background-color: #A5FA7D;
-    
 }
-#cabecera li{
-    float:right; /*tuve que poner los items de la list en orden inverso para que este float los acomode bien*/
-    color:#424242;
-    margin: 1em;
-    padding: 0em;
-    list-style: none;
-}
-#cabecera div .col-sm-8{
+
+#cabecera #botones-cabecera a {
+    float: right;
+    color: #424242;
     text-align: center;
-    padding-right: 3em;
+    padding: 14px 16px;
+    text-decoration: none; /*Evita que se subraye el enlace*/
+    font-size: 20px;  
+}
+#cabecera #botones-cabecera a:hover { /*Cambia estilos al posarse sobre los botones del navbar*/
+    background-color: #ffffff;
+    color: #424242;
+}
+#cabecera #botones-cabecera a.active { /*Cambia estilos del boton si el boton esta activo*/
+    background-color: #424242;
+    color: white;
 }
 
 #primeraSeccion{
     background-color: rgb(235, 235, 235);
     margin:0em;
     padding:2em;
+    padding-left:6em;
+    padding-right:6em;
 }
 #primeraSeccion h2, p{
     color:#424242;
+}
+#primeraSeccion a{
+    color:white;
+    text-decoration: none; /*Evita que se subraye el enlace*/
 }
 #ul-tel{
     list-style-image: url('../images/icon-phone.svg');
@@ -59,9 +68,13 @@ a{
 
 #segundaSeccion{
     background-color: hsl(240, 75%, 98%);
+    background-image: url("../images/bg-curve-desktop.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
     margin:0em;
     padding:2em;
-    
+    padding-left:6em;
+    padding-right:6em;
 }
 #segundaSeccion h2, p{
     color:#424242;
@@ -74,6 +87,8 @@ a{
     background-color: #424242;
     margin:0em;
     padding:5em;
+    padding-left:6em;
+    padding-right:6em;
 }
 #terceraSeccion #p-newsletter{
     color:white;

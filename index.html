@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link href="./css/bootstrap.min.css" rel="stylesheet"> <!-- estilos del bootstrap -->
   <link href="./css/style.css" rel="stylesheet"> <!-- mis estilos-->
@@ -13,50 +13,49 @@
 
   <div class="container-fluid" id="cabecera">
     <div class="row">
-      <div class="col-sm-4"><a href="index.html"><img src="./images/ecos-logo.png" alt="logo" width="100px" id="logo-cabecera"></a></div>
-      <div class="col-sm-8">
-        <ul>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li><a href="">Carrito</a></li>
-          <li><a href="productos.html">Productos</a></li>
-        </ul>
+      <div class="col">
+        <a href="index.html"><img src="./images/ecos-logo.png" alt="logo" width="100px" id="logo-cabecera"></a>
+      </div>
+      <div class="col" id="botones-cabecera">
+        <a href="contacto.html">Contacto</a>
+        <a href="productos.html">Productos</a>
       </div>
     </div>
   </div>
         
-  <div class="container-fluid" id="primeraSeccion">
+  <div class="container-fluid" id="primeraSeccion"> <!--la clase container fluid del div le permite ser responsive (ajustarse al tamaño de la pantalla)-->
     <div class="row">
       <div class="col">
         <h2>MÚSICA CON ACTITUD</h2>
-        <p>Descubrí lo mejor de la música y vestite con ella</p>
-        <img src="./images/coleccion-cds.jpg" alt="ilust. 1" width="500px">
+        <p>Descubrí lo mejor de la música y vestite con ella.</p>
+        <img class="img-fluid" src="./images/coleccion-cds.jpg" alt="ilust. 1" width="800px"> <!--la clase img-fluid permite a la imagen ser responsive-->
       </div>
       <div class="col">
-        <img src="./images/remera-tool.JPG" alt="ilust. 2" width="500px">
+        <img class="img-fluid" src="./images/remera-tool.JPG" alt="ilust. 2" width="800px">
         <br>
         <br>
-        <h2>OFERTAS DEL 30%</h2>
-        <button class="btn btn-secondary">Ver artículos</button>
+        <h2>OFERTAS HASTA EL 30%</h2>
+        <button class="btn btn-secondary"><a href="productos.html">Ver artículos</a></button>
       </div>
     </div>
   </div>
   
-  <div class="container-fluid" id="segundaSeccion">
+  <div class="container-fluid" id="segundaSeccion"> <!--cada icono deberá tener un href que lleve a la pagina de productos (filtrada por el tipo de item del icono)-->
     <div class="row">
       <div class="col">
-        <img src="./images/icono-cd.png" alt="cds" width="200px" height="150px">
+        <img class="img-fluid" src="./images/icono-cd.png" alt="cds" width="200px">
         <h2>CDs</h2>
       </div>
       <div class="col">
-        <img src="./images/icono-vinilo.jpg" alt="vinilo" width="150px">
+        <img class="img-fluid" src="./images/icono-vinilo.png" alt="vinilo" width="200px">
         <h2>Vinilos</h2>
       </div>
       <div class="col">
-        <img src="./images/icono-remera.jpg" alt="ropa" width="200px">
+        <img class="img-fluid" src="./images/icono-remera.png" alt="ropa" width="200px">
         <h2>Ropa</h2>
       </div>
       <div class="col">
-        <img src="./images/icono-dvd.png" alt="dvds" width="150px">
+        <img class="img-fluid" src="./images/icono-dvd.png" alt="dvds" width="200px">
         <h2>DVDs</h2>
       </div>
     </div>
@@ -68,16 +67,16 @@
         <img src="./images/ecos-logo.png" id="logo-blanco" width="150px">
         <br>
         <br>
-        <img src="./images/facebook.svg" id="icono-fb" width="47px">
-        <img src="./images/twitter.svg" id="icono-tw" width="47px">
-        <img src="./images/instagram.svg" id="icono-ig" width="47px">
+        <a href="https://www.facebook.com/aconcaguauniversidad"><img src="./images/facebook.svg" id="icono-fb" width="47px"></a>
+        <a href="https://twitter.com/aconcagua1965"><img src="./images/twitter.svg" id="icono-tw" width="47px"></a>
+        <a href="https://www.instagram.com/universidaddelaconcagua/"><img src="./images/instagram.svg" id="icono-ig" width="47px"></a>
       </div>
-      
       <div class="col">
         <br>
         <br>
         <p id="p-newsletter">Suscribite a nuestro newsletter:</p>
-        <input type="text" placeholder="Ingrese su correo..." style="width: 300px;">
+        <input class="form-control" id="inputdefault" type="email" placeholder="Ingrese su correo...">
+        <br>
         <button class="btn btn-secondary" width="50px">Enviar</button>
       </div>
     </div>
