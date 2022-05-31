@@ -1,18 +1,26 @@
 <?php session_start();
 if (!isset($_SESSION['email'])) {
-    header('location: login.php');
+    header('location: login.html'); //redirige a la pagina de login si el campo email no esta definido
+   
 }
-$db = mysqli_connect('localhost', 'username', 'password', 'database');
-$query = "SELECT * FROM category";
-$result = mysqli_query($db, $query);
-if (!$result) {
-    die(mysqli_error());
+$host="localhost";
+$usuario="root";
+$password="013042";
+$basedatos="ecosdb";
+$cadenaConexion = mysqli_connect($host, $usuario, $password, $basedatos);
+$query = "SELECT * FROM productos";
+$result = mysqli_query($cadenaConexion, $query);
+if (mysqli_connect_errno()) {
+    printf("Falló la conexión: %s\n", mysqli_connect_error());
     exit();
 }
+function showerror($cadenaConexion)   {
+    die("Se ha producido el siguiente error: " . mysqli_error($cadenaConexion));
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,55 +78,28 @@ if (!$result) {
             display: none;
         }
     </style>
-
 </head>
-
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 bg-dark height">
                 <p class="pt-5 pb-5 text-center">
-                    <a href="admin-panel.php" class="text-decoration-none"><span class="text-light text-font">Admin</span></a>
+                    <a href="agregar-producto.php" class="text-decoration-none"><span class="text-light text-font">Admin</span></a>
                 </p>
                 <hr class="bg-light ">
                 <p class="pt-2 pb-2 text-center">
-                    <a href="admin-profile.php" class="text-decoration-none"><span class="text-light">Profile</span></a>
+                    <a href="agregar-producto.php" class="text-decoration-none"><span class="text-light">Add Products</span></a>
                 </p>
                 <hr class="bg-light ">
                 <p class="pt-2 pb-2 text-center">
-                    <a href="categories.php" class="text-decoration-none"><span class="text-light">Categories</span></a>
+                    <a href="mostrar-producto.php" class="text-decoration-none"><span class="text-light">View Products</span></a>
                 </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="subcategories.php" class="text-decoration-none"><span class="text-light">Browse Categories</span></a>
-                </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="products-add.php" class="text-decoration-none"><span class="text-light">Add Products</span></a>
-                </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="products-display.php" class="text-decoration-none"><span class="text-light">View Products</span></a>
-                </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="new-user-requests.php" class="text-decoration-none"><span class="text-light">New user requests</span></a>
-                </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="view-users.php" class="text-decoration-none"><span class="text-light">View user</span></a>
-                </p>
-                <hr class="bg-light ">
-                <p class="pt-2 pb-2 text-center">
-                    <a href="display-orders.php" class="text-decoration-none"><span class="text-light">View Orders</span></a>
-                </p>
-
             </div>
             <div class="col-sm-10 bg-light">
                 <div class="row">
                     <div class="col-sm-2">
                         <p class="text-center pt-5">
-                            <img class="rounded" src="<?php echo ("/test123/profile-pic/") . ($_SESSION['email']) . "display-picture.jpg"; ?>" width="150px" height="140px">
+                        <img class="rounded" src="<?php echo ("images/icono-admin.png")?>" width="150px" height="140px">
                         </p>
                     </div>
                     <div class="col-sm-8">
@@ -133,62 +114,58 @@ if (!$result) {
                 </div>
                 <div class="container mx-auto">
                     <form action="products-add.php" id="the-form" class="form-control w-50 mx-auto" enctype="multipart/form-data" method="post">
-
-                        <label class="pt-4 pb-2 text-center">Enter product name</label>
-                        <input type="text" class="form-control" value="<?php echo $_POST['pname'] ?>" id="name" name="pname" placeholder="Enter Product name">
-                        <label class="pt-4 pb-2 text-center">Enter Brand name</label>
-                        <input type="text" class="form-control" value="<?php echo $_POST['brand'] ?>" id="brand" name="brand" placeholder="Enter brand name">
-                        <label class="pt-4 pb-2 text-center">Enter product price</label>
-                        <input type="text" class="form-control" value="<?php echo $_POST['price'] ?>" id="prprice" name="price" placeholder="Enter Product price">
-                        <label class="pt-4 pb-2 text-center">Enter quantity</label>
-                        <input type="text" class="form-control" value="<?php echo $_POST['qty'] ?>" id="qty" name="qty" placeholder="Enter quantity">
-
-                        <label class="pt-4 pb-2 text-center" for="categories">Choose a category</label>
+                        <label class="pt-4 pb-2 text-center">Ingrese nombre del producto</label>
+                        <input type="text" class="form-control" value="<?php echo $_POST['pname'] ?>" id="name" name="pname" placeholder="Escriba aquí...">
+                        <label class="pt-4 pb-2 text-center">Ingrese artista asociado</label>
+                        <input type="text" class="form-control" value="<?php echo $_POST['artist'] ?>" id="artist" name="artist" placeholder="Escriba aquí...">
+                        <label class="pt-4 pb-2 text-center">Ingrese el precio</label>
+                        <input type="text" class="form-control" value="<?php echo $_POST['price'] ?>" id="prprice" name="price" placeholder="Escriba aquí...">
+                        <label class="pt-4 pb-2 text-center">Ingrese la cantidad</label>
+                        <input type="text" class="form-control" value="<?php echo $_POST['qty'] ?>" id="qty" name="qty" placeholder="Escriba aquí...">
+                        <label class="pt-4 pb-2 text-center" for="categories">Elija una categoria</label>
                         <select class="form-control" id="categories" name="categories" onchange="this.form.submit()">
                             <option value=""><?php if (isset($_POST['categories'])) {
                                                     $id2 = $_POST['categories'];
-                                                    $query2 = "SELECT * FROM category where id='$id2'";
-                                                    $result2 = mysqli_query($db, $query2);
+                                                    $query2 = "SELECT * FROM categorias where id='$id2'";
+                                                    $result2 = mysqli_query($cadenaConexion, $query2);
                                                     if (!$result2) {
-                                                        die(mysqli_error());
-                                                        exit();
+                                                        if (mysqli_connect_errno()) {
+                                                            printf("Falló la conexión: %s\n", mysqli_connect_error());
+                                                            exit();
+                                                        }
+                                                        function showerror($cadenaConexion)   {
+                                                            die("Se ha producido el siguiente error: " . mysqli_error($cadenaConexion));
+                                                        }
                                                     }
                                                     $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
-                                                    echo $row2['name'];
+                                                    echo $row2['nombre'];
                                                 } else
                                                     echo ("-");
                                                 ?></option>
                             <?php while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { ?>
-                                <option value="<?php echo ($row['id']); ?>"><?php echo $row['name']; ?></option>
+                                <option value="<?php echo ($row['id']); ?>"><?php echo $row['nombre']; ?></option>
                             <?php } ?>
-
                         </select>
 
                         <?php
-
-                        $id = $_POST['categories'];
-                        echo "<input type='hidden' value='$id' id='categoryid'>";
-                        $query1 = "SELECT * FROM subcategory where id='$id'";
-                        $result1 = mysqli_query($db, $query1);
-                        if (!$result1) {
-                            die(mysqli_error());
-                            exit();
-                        }
+                            $id = $_POST['categories'];
+                            echo "<input type='hidden' value='$id' id='id_categoria'>";
+                            $query1 = "SELECT * FROM categorias where id='$id'";
+                            $result1 = mysqli_query($cadenaConexion, $query1);
+                            if (!$result1) {
+                                if (mysqli_connect_errno()) {
+                                    printf("Falló la conexión: %s\n", mysqli_connect_error());
+                                    exit();
+                                }
+                                function showerror($cadenaConexion)   {
+                                    die("Se ha producido el siguiente error: " . mysqli_error($cadenaConexion));
+                                }
+                            }
                         ?>
-                        <label class="pt-4 pb-2 text-center" for="subcategories">Choose a sub-category</label>
-                        <select class="form-control" id="subcategories" name="subcategories">
-                            <option value="">-</option>
-                            <?php while ($row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC)) { ?>
-                                <option value="<?php echo $row1['sid']; ?>"><?php echo ($row1['name']); ?></option>
-                            <?php } ?>
-                        </select>
                         <br>
-
-
                         <p class="text-danger pt-2"><strong>Upload product images</strong></p>
                         <input type="file" name="fileToUpload[]" class="form-control" multiple>
                         <p>
-
                         </p><br>
                         <div class="container w-25 mx-auto">
                             <div class="hide"><img class="mx-auto" style="height: 50px; width: 50px;" src="/test123/products-images/ajax-loader.gif"></div>
@@ -199,11 +176,7 @@ if (!$result) {
                         <div class="error"></div>
                         <div class="success"></div>
                     </form>
-
                     <br><br>
-
-
-
                     <script>
                         function addproduct() {
                             event.preventDefault();
@@ -245,7 +218,7 @@ if (!$result) {
                                         $('.success').hide();
                                     }
                                     if (data == 6) {
-                                        $('.error').html("Uknown error occurs.").show();
+                                        $('.error').html("Unknown error occurs.").show();
                                         $('.success').hide();
                                     }
                                     if (data == 0) {

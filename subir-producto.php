@@ -1,20 +1,22 @@
 <?php
-$db = mysqli_connect('localhost', 'username', 'password', 'database');
-$sid = $_POST['subcategories'];
-$query = "SELECT id FROM subcategory WHERE sid='$sid'";
-$result = mysqli_query($db, $query);
+$host="localhost";
+$usuario="root";
+$password="013042";
+$basedatos="ecosdb";
+$cadenaConexion = mysqli_connect($host, $usuario, $password, $basedatos);
+$result = mysqli_query($cadenaConexion, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $id = $row['id'];
-$query = "SELECT name FROM category WHERE id='$id'";
-$result = mysqli_query($db, $query);
+$query = "SELECT nom_categoria FROM productos WHERE id='$id'";
+$result = mysqli_query($cadenaConexion, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $category_name = $row['name'];
 $pid = rand(9999, 1000);
-$brand = $_POST['brand'];
+$artist = $_POST['artist'];
 $productname = $_POST['pname'];
 $qty = $_POST['qty'];
 $price = $_POST['price'];
-date_default_timezone_set("Asia/Kolkata");
+date_default_timezone_set("Argentina");
 $t = time();
 $created_date = date("Y-m-d:h-i-s", $t);
 $updated_date = date("Y-m-d:h-i-s", $t);
@@ -75,16 +77,20 @@ for ($i = 0; $i < $total; $i++) {
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file[$i]);
     }
 }
-$query = "INSERT INTO products (id,category_id,category_name,product_name,subcategory_id,price,brand,qty,image,created_date,updated_date) VALUES('$pid','$id','$category_name','$productname','$sid','$price','$brand','$qty','$target_file[0]','$created_date','$updated_date')";
-$result = mysqli_query($db, $query);
+$query = "INSERT INTO productos (id,id_categoria,nom_categoria,nom_producto,precio,artista,cantidad,imagen,fecha_creacion,fecha_act) VALUES('$pid','$id','$category_name','$productname','$sid','$price','$brand','$qty','$target_file[0]','$created_date','$updated_date')";
+$result = mysqli_query($cadenaConexion, $query);
 if (!$result) {
-    die(mysqli_error());
-    echo 0;
-    exit();
+    if (mysqli_connect_errno()) {
+        printf("Falló la conexión: %s\n", mysqli_connect_error());
+        exit();
+    }
+    function showerror($cadenaConexion)   {
+        die("Se ha producido el siguiente error: " . mysqli_error($cadenaConexion));
+    }
 } else {
     for ($i = 0; $i < $total; $i++) {
-        $query = "INSERT INTO product_images (pid,image) VALUES('$pid','$target_file[$i]')";
-        $result = mysqli_query($db, $query);
+        $query = "INSERT INTO productos_img (id_producto,imagen) VALUES('$pid','$target_file[$i]')";
+        $result = mysqli_query($cadenaConexion, $query);
     }
     echo 1;
 }

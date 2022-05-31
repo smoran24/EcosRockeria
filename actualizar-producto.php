@@ -1,11 +1,15 @@
 <?php
-$db = mysqli_connect('localhost', 'username', 'password', 'database');
-$brand = $_POST['brand'];
+$host="localhost";
+$usuario="root";
+$password="013042";
+$basedatos="ecosdb";
+$cadenaConexion = mysqli_connect($host, $usuario, $password, $basedatos);
+$artist = $_POST['artist'];
 $qty = $_POST['quantity'];
 $price = $_POST['price'];
 $pid = $_POST['pid'];
 $pname = $_POST['product-name'];
-date_default_timezone_set("Asia/Kolkata");
+date_default_timezone_set("Argentina");
 $t = time();
 $updated_date = date("Y-m-d:h-i-s", $t);
 $total = count($_FILES["fileToUpload"]["name"]);
@@ -66,20 +70,24 @@ for ($i = 0; $i < $total; $i++) {
     }
 }
 //update the products table    
-$query = "UPDATE products SET 
-                product_name = '$pname', price = '$price', brand='$brand', qty = '$qty', image= '$target_file[0]', updated_date = '$updated_date' WHERE id = '$pid'";
-$result = mysqli_query($db, $query);
+$query = "UPDATE productos SET 
+                nom_producto = '$pname', precio = '$price', artista='$artist', cantidad = '$qty', imagen= '$target_file[0]', fecha_act = '$updated_date' WHERE id = '$pid'";
+$result = mysqli_query($cadenaConexion, $query);
 if (!$result) {
-    die(mysqli_error());
-    echo 11;
-    exit();
+    if (mysqli_connect_errno()) {
+        printf("Falló la conexión: %s\n", mysqli_connect_error());
+        exit();
+    }
+    function showerror($cadenaConexion)   {
+        die("Se ha producido el siguiente error: " . mysqli_error($cadenaConexion));
+    }
 }
 //Delete the image entries from product_images table and insert the new images as a new row.
 
-$query = "DELETE FROM product_images WHERE pid='$pid'";
-$result = mysqli_query($db, $query);
+$query = "DELETE FROM productos_img WHERE id_producto='$pid'";
+$result = mysqli_query($cadenaConexion, $query);
 for ($i = 0; $i < $total; $i++) {
-    $query = "INSERT INTO product_images (pid,image) VALUES('$pid','$target_file[$i]')";
-    $result = mysqli_query($db, $query);
+    $query = "INSERT INTO productos_img (id_producto,imagen) VALUES('$pid','$target_file[$i]')";
+    $result = mysqli_query($cadenaConexion, $query);
 }
-header('Location: products-display.php');
+header('Location: mostrar-producto.php');
