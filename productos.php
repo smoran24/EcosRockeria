@@ -29,6 +29,18 @@
             margin:10pt;
         }
     </style>
+    <script> //funcion de javascript con la cual valido los datos que se ingreseb en el form de inserción
+        function validarDatos() {
+            let inputCat = document.forms["formInsertar"]["categoria"].value;
+            let inputNom = document.forms["formInsertar"]["nombre"].value;
+            let inputPre = document.forms["formInsertar"]["precio"].value;
+            let inputArt = document.forms["formInsertar"]["artista"].value;
+            if (inputCat == "" || inputNom == "" || inputPre == "" || inputArt == "") { //si uno o más campos estan vacíos...
+                alert("Todos los campos deben llenarse!");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container mt-5">
@@ -36,11 +48,11 @@
             <div class="col-md-3">
                 <h1>Añadir registro</h1>
                 <br>
-                <form action="insertar.php" method="POST" enctype="multipart/form-data"> <!--enctype indica el tipo de codificación, en este caso INDISPENSABLE para subir imagenes-->
+                <form name="formInsertar" action="insertar.php" method="POST" onsubmit="return validarDatos()" enctype="multipart/form-data"> <!--enctype indica el tipo de codificación, en este caso INDISPENSABLE para subir imagenes-->
                     <!--Hace POST porque envia los datos (en name) de los campos input al insertar.php-->
                     <input type="text" class="form-control mb-3" name="categoria" placeholder="Categoría">
                     <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre">
-                    <input type="text" class="form-control mb-3" name="precio" placeholder="Precio">
+                    <input type="number" min="0" class="form-control mb-3" name="precio" placeholder="Precio">
                     <input type="text" class="form-control mb-3" name="artista" placeholder="Artista">
                     <?php if(isset($_GET['size'])):?> <!--Condicion en PHP que evalua si la imagen subida es muy grande (ver insertar.php)-->
                     <?php echo'<label for="imagen">Imagen muy grande, intente con otra.</label><br>'?>
@@ -61,6 +73,8 @@
                             <th>Precio</th>
                             <th>Artista</th>
                             <th>Imagen</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
