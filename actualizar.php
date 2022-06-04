@@ -20,16 +20,18 @@
     <div class="container mt-5">
         <h1>Actualizar registro</h1>
         <br>
-        <form action="update.php" method="POST">
+        <form action="update.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $row['id']?>">
             <input type="text" class="form-control mb-3" name="categoria" placeholder="Categoría" value="<?php echo $row['categoria']?>">
             <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre" value="<?php echo $row['nombre']?>">
             <input type="text" class="form-control mb-3" name="precio" placeholder="Precio" value="<?php echo $row['precio']?>">
             <input type="text" class="form-control mb-3" name="artista" placeholder="Artista" value="<?php echo $row['artista']?>">
-            <!--
-                <p class="text-secondary pt-2"><strong>Subir imagen del producto</strong></p>
-                <input type="file" name="fileToUpload[]" class="form-control" multiple>
-            -->
+            <?php if(isset($_GET['size'])):?> <!--Condicion en PHP que evalua si la imagen subida es muy grande (ver update.php)-->
+            <?php echo'<label for="imagen">Imagen muy grande, intente con otra.</label><br>'?>
+            <?php endif;?>
+            <p class="text-secondary pt-2"><strong>Subir imagen del producto</strong></p>
+            <input type="file" name="imagen" class="form-control" multiple>
+            <br>
             <input type="submit" class="btn btn-success btn-block" value="Actualizar">
             <a href="productos.php" class="btn btn-secondary"">Cancelar</a>
         </form>

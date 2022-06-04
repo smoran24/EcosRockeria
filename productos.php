@@ -36,16 +36,17 @@
             <div class="col-md-3">
                 <h1>Añadir registro</h1>
                 <br>
-                <form action="insertar.php" method="POST">
+                <form action="insertar.php" method="POST" enctype="multipart/form-data"> <!--enctype indica el tipo de codificación, en este caso INDISPENSABLE para subir imagenes-->
                     <!--Hace POST porque envia los datos (en name) de los campos input al insertar.php-->
                     <input type="text" class="form-control mb-3" name="categoria" placeholder="Categoría">
                     <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre">
                     <input type="text" class="form-control mb-3" name="precio" placeholder="Precio">
                     <input type="text" class="form-control mb-3" name="artista" placeholder="Artista">
-                    <!--
+                    <?php if(isset($_GET['size'])):?> <!--Condicion en PHP que evalua si la imagen subida es muy grande (ver insertar.php)-->
+                    <?php echo'<label for="imagen">Imagen muy grande, intente con otra.</label><br>'?>
+                    <?php endif;?>
                     <p class="text-secondary pt-2"><strong>Subir imagen del producto</strong></p>
-                    <input type="file" name="fileToUpload[]" class="form-control" multiple>
-                    -->
+                    <input type="file" name="imagen" class="form-control" multiple>
                     <br>
                     <input type="submit" class="btn btn-success form-control">
                 </form>
