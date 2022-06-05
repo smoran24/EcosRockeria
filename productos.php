@@ -29,7 +29,7 @@
             margin:10pt;
         }
     </style>
-    <script> //funcion de javascript con la cual valido los datos que se ingreseb en el form de inserción
+    <script> //funcion de javascript con la cual valido los datos que se ingresen en el form de inserción
         function validarDatos() {
             let inputCat = document.forms["formInsertar"]["categoria"].value;
             let inputNom = document.forms["formInsertar"]["nombre"].value;
