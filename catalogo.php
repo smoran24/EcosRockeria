@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link href="./css/bootstrap.min.css" rel="stylesheet"> <!-- estilos del bootstrap -->
-  <link href="./css/style.css" rel="stylesheet"> <!-- mis estilos-->
+  <link href="./css/style.css" type="text/css" rel="stylesheet"> <!-- mis estilos-->
   <script src="./js/bootstrap.bundle.min.js"></script>
   <title>Ecos Rockería - Productos</title>
 </head>
