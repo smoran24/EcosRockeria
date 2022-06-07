@@ -90,9 +90,12 @@ a{
     padding-left:6em;
     padding-right:6em;
 }
-#terceraSeccion #p-newsletter{
-    color:white;
+#terceraSeccion #enlaceCRUD{
+    color:white !important;
+    text-decoration: none !important;
+    display: hidden !important;
 }
+
 #logo-blanco, #icono-fb, #icono-tw, #icono-ig{ /*cambia de color a blanco las imagenes*/
     color:white;
     filter: brightness(0) invert(1); 

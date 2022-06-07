@@ -42,7 +42,7 @@
         <p id="titulo-busqueda">Recorré nuestro catálogo completo</p>
       </div>
         <div class="col">
-          <form method="POST" action="busqueda.php"> <!--Envia (hace POST) a la busqueda a la pag busqueda.php-->
+          <form method="POST">
             <div class="form-row align-items-center">
               <div class="col-auto">
                 <input required name="PalabraClave" type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Buscar artículos...">  
@@ -73,17 +73,34 @@
                     </thead>
                     <tbody>
 
-                    <!--Aca estamos iterando a través de los resultados del atributo de datos que contiene los registros y creando una fila de tabla para cada uno-->
-                    <?php for( $i = 0; $i < count( $results->data ); $i++ ) : ?>
-                    <tr>
-                    <td><?php echo $results->data[$i]['categoria']; ?></td>
-                    <td><?php echo $results->data[$i]['nombre']; ?></td>
-                    <td><?php echo '$'.$results->data[$i]['precio']; ?></td>
-                    <td><?php echo $results->data[$i]['artista']; ?></td>
-                    <td><img src="<?php echo $results->data[$i]['imagen'] ?>" alt="miniatura" width="100px"></td>
-                    </tr>
-                    <?php endfor; ?>
-                    
+                    <?php
+                    if(!empty($_POST)){ //logica php para mostrar resultados de busqueda
+                      $aKeyword = explode(" ", $_POST['PalabraClave']); //convierte en array la string de palabras clave
+                      $query ="SELECT * FROM productos WHERE categoria like '%" . $aKeyword[0] . "%' OR nombre like '%" . $aKeyword[0] . "%'"; //introduce el indice 0 del array de palabras clave en el query
+                      for($i = 1; $i < count($aKeyword); $i++) {
+                        if(!empty($aKeyword[$i])) {
+                          $query .= " OR nombre like '%" . $aKeyword[$i] . "%'";
+                        }
+                      }
+                      $db = conectar(); //asigna a la variable db la conexion a base de datos
+                      $result = $db->query($query); //asigna a variable result la sentencia sql
+                      echo "Has buscado:<b> ". $_POST['PalabraClave']."</b>";            
+                      if(mysqli_num_rows($result) > 0) { //si el numero de filas obtenidos con la sentencia sql es mayor a 0...
+                        $row_count=0;
+                        echo "<br>Resultados encontrados: ";
+                        echo "<br><table class='table table-striped table-condensed table-bordered table-rounded'>";
+                        While($row = $result->fetch_assoc()) {   
+                          $row_count++;                         
+                          echo "<tr><td>". $row['categoria'] . "</td><td>". $row['nombre'] . "</td><td>$". $row['precio'] ."</td><td>". $row['artista'] ."</td><td><img src='". $row['imagen'] ."' alt='miniatura' width='100px'></td></tr>";
+                        }
+                        echo "</table>";
+                      }
+                      else {
+                        echo "<br>Resultados encontrados: Ninguno";
+                      }
+                    }
+                  ?>
+
                     </tbody>
                   </table>
         <?php echo $Paginator->createLinks( $links, 'pagination pagination-sm' ); ?> 
