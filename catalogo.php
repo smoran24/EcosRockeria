@@ -49,6 +49,12 @@
                 <input name="buscar" type="hidden" class="form-control mb-2" id="inlineFormInput" value="v">
               </div>
               <div class="col-auto">
+                <select class="form-select" name="filtrado" id="filtrado">
+                  <option selected value="nom">Filtrar por nombre</option>
+                  <option value="cat">Filtrar por categoría</option>
+                  <option value="art">Filtrar por artista</option>
+                </select>
+                <br>
                 <button type="submit" class="btn btn-secondary mb-2">Buscar</button>
               </div>
             </div>
