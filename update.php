@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("conexion.php");
     $con=conectar();
     $id=$_POST['id'];

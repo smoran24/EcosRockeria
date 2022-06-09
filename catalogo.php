@@ -19,7 +19,7 @@
   <link href="./css/bootstrap.min.css" rel="stylesheet"> <!-- estilos del bootstrap -->
   <link href="./css/style.css" type="text/css" rel="stylesheet"> <!-- mis estilos-->
   <script src="./js/bootstrap.bundle.min.js"></script>
-  <title>Ecos Rockería - Productos</title>
+  <title>Ecos Rockería - Catálogo</title>
 </head>
 <body>
 
