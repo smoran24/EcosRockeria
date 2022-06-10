@@ -91,9 +91,8 @@ a{
     padding-right:6em;
 }
 #terceraSeccion #enlaceCRUD{
-    color:white;
+    color:rgb(141, 141, 141);
     text-decoration: none;
-    display: hidden;
 }
 
 #logo-blanco, #icono-fb, #icono-tw, #icono-ig{ /*cambia de color a blanco las imagenes*/
