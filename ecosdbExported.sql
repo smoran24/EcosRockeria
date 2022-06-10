@@ -11,18 +11,6 @@ MySQL - 5.0.45-community-nt : Database - ecosdb
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-/*Table structure for table `categorias` */
-
-DROP TABLE IF EXISTS `categorias`;
-
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
-  `nombre` text NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `categorias` */
-
 /*Table structure for table `productos` */
 
 DROP TABLE IF EXISTS `productos`;
@@ -35,12 +23,12 @@ CREATE TABLE `productos` (
   `artista` varchar(80) default NULL,
   `imagen` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 /*Data for the table `productos` */
 
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (1,'CD','Radiohead - COM LAG EP','500','Radiohead','products-images/comlag.jpg');
-insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (17,'CD','The White Stripes - Elephant','400','The White Stripes','products-images/R-567336-124958620520220604050635.jpg');
+insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (17,'CD','The White Stripes - Elephant','430','The White Stripes','products-images/R-567336-124958620520220609110627.jpg');
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (26,'CD','Tool - Undertow','400','Tool','products-images/R-7698859-1471741427-871020220604070613.jpg');
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (35,'CD','Deftones - Koi No Yokan','550','Deftones','products-images/DEFTONES-KOI-NO-YOKAN-BIG-560x60020220605050633.jpg');
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (36,'Vinilo','The Alan Parsons Project - I Robot','1000','The Alan Parsons Project','products-images/irobot20220605050629.JPG');
@@ -53,18 +41,8 @@ insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) 
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (43,'Ropa','Remera Tool 10000 Days Negra','800','Tool','products-images/remeratool20220605060641.JPG');
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (44,'Ropa','Remera Soundgarden Badmotorfinger','800','Soundgarden','products-images/remerasound20220605060659.JPG');
 insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (45,'Ropa','Buzo Manga Larga Godflesh Negro','700','Godflesh','products-images/remeragodflesh20220605060648.JPG');
-
-/*Table structure for table `productos_img` */
-
-DROP TABLE IF EXISTS `productos_img`;
-
-CREATE TABLE `productos_img` (
-  `id_producto` int(11) NOT NULL,
-  `imagen` text NOT NULL,
-  KEY `id_producto` (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `productos_img` */
+insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (47,'Ropa','Piluso Gorro Radiohead Negro','1500','Radiohead','products-images/pilusoradiohead20220610010649.JPG');
+insert  into `productos`(`id`,`categoria`,`nombre`,`precio`,`artista`,`imagen`) values (48,'Ropa','Remera Pink Floyd Mujer Dark Side','2000','Pink Floyd','products-images/remerapink20220610020637.JPG');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
