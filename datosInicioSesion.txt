@@ -1,0 +1,4 @@
+Con los siguientes datos se accede al CRUD desde login.html:
+
+correo: admin@root.com
+contraseña: 2515
